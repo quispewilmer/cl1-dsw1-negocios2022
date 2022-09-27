@@ -2,9 +2,9 @@
 
 namespace MssqlConnector
 {
-    public class Connector
+    public static class Connector
     {
-        SqlConnection getConnection(string connectionString)
+        public static SqlConnection getConnection(string connectionString)
         {
             return new SqlConnection(connectionString);
         }

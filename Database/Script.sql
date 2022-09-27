@@ -40,6 +40,22 @@ BEGIN
 END
 GO
 
+IF (OBJECT_ID('uspObtenerEmpleado') IS NOT NULL) 
+BEGIN
+	DROP PROCEDURE uspObtenerEmpleado;
+END
+GO
+
+CREATE PROCEDURE uspObtenerEmpleado 
+@idEmpleado INT
+AS
+BEGIN
+	SELECT IdEmpleado, ApeEmpleado, NomEmpleado, FecNac, DirEmpleado, idDistrito, fonoEmpleado, idCargo, FecContrata 
+	FROM RRHH.empleados
+	WHERE IdEmpleado = @idEmpleado
+END
+GO
+
 IF (OBJECT_ID('uspRegistrarEmpleado') IS NOT NULL) 
 BEGIN
 	DROP PROCEDURE uspRegistrarEmpleado;
@@ -47,6 +63,7 @@ END
 GO
 
 CREATE PROCEDURE uspRegistrarEmpleado
+@IdEmpleado INT,
 @ApeEmpleado VARCHAR(50),
 @NomEmpleado VARCHAR(50),
 @FecNac DATETIME,
@@ -57,8 +74,8 @@ CREATE PROCEDURE uspRegistrarEmpleado
 @FecContrata DATETIME
 AS
 BEGIN
-	INSERT INTO RRHH.empleados(ApeEmpleado, NomEmpleado, FecNac, DirEmpleado, idDistrito, fonoEmpleado, idCargo, FecContrata)
-	VALUES (@ApeEmpleado, @NomEmpleado, @FecNac, @DirEmpleado, @idDistrito, @fonoEmpleado, @idCargo, @FecContrata)
+	INSERT INTO RRHH.empleados(IdEmpleado, ApeEmpleado, NomEmpleado, FecNac, DirEmpleado, idDistrito, fonoEmpleado, idCargo, FecContrata)
+	VALUES (@IdEmpleado, @ApeEmpleado, @NomEmpleado, @FecNac, @DirEmpleado, @idDistrito, @fonoEmpleado, @idCargo, @FecContrata)
 END
 GO
 

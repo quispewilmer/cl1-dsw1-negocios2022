@@ -1,7 +1,15 @@
+using cl1_q1.Interfaces;
+using cl1_q1.Services;
+using Microsoft.DotNet.Scaffolding.Shared.ProjectModel;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IEmpleado, EmpleadoService>();
+builder.Services.AddScoped<ICargo, CargoService>();
+builder.Services.AddScoped<IDistrito, DistritoService>();
 
 var app = builder.Build();
 
