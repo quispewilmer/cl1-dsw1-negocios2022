@@ -1,6 +1,8 @@
 USE Negocios2022
 GO
 
+-- PRIMERA PREGUNTA
+
 IF (OBJECT_ID('uspListarEmpleados') IS NOT NULL) 
 BEGIN
 	DROP PROCEDURE uspListarEmpleados;
@@ -116,5 +118,21 @@ AS
 BEGIN
 	DELETE FROM RRHH.empleados
 	WHERE IdEmpleado = @idEmpleado;
+END
+GO
+
+-- SEGUNDA PREGUNTA
+
+IF (OBJECT_ID('uspProductoListar') IS NOT NULL) 
+BEGIN
+	DROP PROCEDURE uspProductoListar;
+END
+GO
+
+CREATE PROCEDURE uspProductoListar
+AS
+BEGIN
+	SELECT IdProducto, NomProducto, IdCategoria, IdProveedor, CantxUnidad, PrecioUnidad, UnidadesEnExistencia, UnidadesEnPedido
+	FROM Compras.productos
 END
 GO
